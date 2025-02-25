@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BunbouguController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::middleware('auth')->group(function () {Route::get('/bunbougus',[BunbouguController::class, 'index'])->name('index');
+});
+Route::get('/bunbougus/create',[BunbouguController::class,'create'])->name('bunbougus.create');
+Route::post('/bunbougus/store',[BunbouguController::class,'store'])->name('bunbougus.store');
+Route::get('/bunbougus/edit/{bunbougu}',[BunbouguController::class,'edit'])->name('bunbougu.edit');
+Route::put('/bunbougus/edit/{bunbougu}',[BunbouguController::class,'update'])->name('bunbougu.update');
+Route::get('/bunbougus/show/{bunbougu}',[BunbouguController::class,'show'])->name('bunbougu.show');
+Route::delete('/bunbougus/destroy/{bunbougu}',[BunbouguController::class,'destroy'])->name('bunbougu.destroy');
